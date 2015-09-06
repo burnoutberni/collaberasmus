@@ -1,0 +1,45 @@
+#status {
+	float:right;
+	margin-top: 20px;
+}
+
+#whatsthis, #settings {
+	display:none;
+}
+
+h2 {
+	font-size: 20px;
+}
+
+.linkish {
+	cursor:pointer;
+}
+
+.linkish:hover {
+	text-decoration: underline;
+}
+
+iframe {
+	height: 200px;
+	width: 100%;
+}
+
+p, .loadedItem {
+	white-space:pre-line;
+}
+
+.openDot {
+	color: #5CB85C;
+}
+
+.closedDot {
+	color: #D9534F;
+}
+
+.defaultDot {
+	color: #F0AD4E;
+}
+
+footer {
+	margin: 20px 0;
+}
