@@ -65,10 +65,10 @@ $(".questionTitle").click(function() {
 	if (clickedPadStatus === "pad" || clickedPadStatus === "text") {
 		clickedDiv.children(".loadedItem").toggle();
 	} else if ((settings.padServer === "" || settings.padRoot === "") && clickedPadStatus !== "warning") {
-		clickedDiv.append('<p class="loadedItem well">Please go to the settings and enter the project details</p>');
+		clickedDiv.append('<p class="alert alert-warning">Please go to the settings and enter the project details</p>');
 		clickedDiv.attr("loaded", "warning");
 	} else if ((settings.padServer === "" || settings.padRoot === "") && clickedPadStatus === "warning") {
-		clickedDiv.children(".loadedItem").toggle();
+		clickedDiv.children(".alert").toggle();
 	} else if (clickedStatus === "open") {
 		var questionPad = $('<iframe class="loadedItem" name="embed_readwrite" src="'+settings.padServer+'/p/'+settings.padRoot+clickedId+'?showControls=true&showChat=false&showLineNumbers=true&useMonospaceFont=false"></iframe>');
 		clickedDiv.append(questionPad);
@@ -101,11 +101,13 @@ $("#selectSettings").click(function() {
 $("#padServer").blur(function() {
 	settings.padServer = $("#padServer").val();
 	createCookie("padserver", settings.padServer, 30);
+	resetLoaded(".question");
 });
 
 $("#padRoot").blur(function() {
 	settings.padRoot = $("#padRoot").val();
 	createCookie("padroot", settings.padRoot, 30);
+	resetLoaded(".question");
 });
 
 
@@ -114,6 +116,13 @@ $(".back").click(function() {
 	$("#whatsthis").hide();
 	$("#settings").hide();
 });
+
+function resetLoaded(obj) {
+	$(obj).each(function () {
+		$(this).attr("loaded", "");
+		$(this).children("p, iframe").remove();
+	});
+}
 
 function createCookie(name, value, days) {
     var expires;
