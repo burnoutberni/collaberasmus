@@ -43,6 +43,7 @@ createCookie("padroot", settings.padRoot, 30);
 
 $("#padServer").val(settings.padServer);
 $("#padRoot").val(settings.padRoot);
+$("#share").val(window.location+"?padserver="+settings.padServer+"&padroot="+settings.padRoot);
 
 var questionIndex = 0;
 var questionCountClosed = 0;
@@ -116,12 +117,14 @@ $("#selectSettings").click(function() {
 
 $("#padServer").blur(function() {
 	settings.padServer = $("#padServer").val();
+	$("#share").val(window.location+"?padserver="+settings.padServer+"&padroot="+settings.padRoot);
 	createCookie("padserver", settings.padServer, 30);
 	resetLoaded(".question");
 });
 
 $("#padRoot").blur(function() {
 	settings.padRoot = $("#padRoot").val();
+	$("#share").val(window.location+"?padserver="+settings.padServer+"&padroot="+settings.padRoot);
 	createCookie("padroot", settings.padRoot, 30);
 	resetLoaded(".question");
 });
