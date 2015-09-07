@@ -35,8 +35,8 @@ var questions = [
 if (readCookie("padserver")) { settings.padServer = readCookie("padserver"); }
 if (readCookie("padroot")) { settings.padRoot = readCookie("padroot"); }
 
-if ($.urlParam("padserver")) { settings.padServer = $.urlParam("padserver"); }
-if ($.urlParam("padroot")) { settings.padRoot = $.urlParam("padroot"); }
+if ($.urlParam("padserver")) { settings.padServer = decodeURIComponent($.urlParam("padserver")); }
+if ($.urlParam("padroot")) { settings.padRoot = decodeURIComponent($.urlParam("padroot")); }
 
 createCookie("padserver", settings.padServer, 30);
 createCookie("padroot", settings.padRoot, 30);
