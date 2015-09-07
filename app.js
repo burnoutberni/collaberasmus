@@ -1,3 +1,13 @@
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return results[1] || 0;
+    }
+}
+
 var settings = {"padServer":"", "padRoot": ""};
 var questions = [
 	{"text":"D. Why do you want to carry out this project? What are its objectives? How does it link to the objectives of the Erasmus+ programme and this specific key action? What are the issues and needs are you seeking to address through this project?", "status":"open"},
@@ -24,6 +34,12 @@ var questions = [
 
 if (readCookie("padserver")) { settings.padServer = readCookie("padserver"); }
 if (readCookie("padroot")) { settings.padRoot = readCookie("padroot"); }
+
+if ($.urlParam("padserver")) { settings.padServer = $.urlParam("padserver"); }
+if ($.urlParam("padroot")) { settings.padRoot = $.urlParam("padroot"); }
+
+createCookie("padserver", settings.padServer, 30);
+createCookie("padroot", settings.padRoot, 30);
 
 $("#padServer").val(settings.padServer);
 $("#padRoot").val(settings.padRoot);
